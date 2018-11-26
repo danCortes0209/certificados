@@ -1,0 +1,38 @@
+.navbar {
+    display: block;
+    width: 100%;
+    height: 4rem;
+    overflow: hidden;
+    background-color: map-get($map: $colors, $key: black);
+
+
+
+    &__list {
+        display: flex;
+        height: 100%;
+        width: 80%;
+        flex-direction: row;
+        margin: 0 auto;
+        justify-content: space-evenly;
+    }
+
+    &__item {
+        flex-basis: 150px;
+        list-style: none;
+    }
+
+    &__link {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: map-get($map: $colors, $key: bg);
+
+        &:hover {
+            color: map-get($map: $colors, $key: liver); 
+            background: rgba(map-get($map: $colors, $key: bg), 0.1);
+        }
+    }
+}

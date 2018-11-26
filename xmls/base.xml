@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Dec version="1.0" tipoCertificado="5" folioControl="#"
+  sello="#"
+  certificadoResponsable="#"
+  noCertificadoResponsable="#" 
+    xmlns="https://www.siged.sep.gob.mx/certificados/">
+  <Ipes idNombreInstitucion="#" idCampus="#" idEntidadFederativa="#">
+    <Responsable nombre="#" primerApellido="#" segundoApellido="#" curp="#" idCargo="#"/>
+  </Ipes>
+  <Rvoe numero="#" fechaExpedicion="#"/>
+  <Carrera idCarrera="#" idTipoPeriodo="#" clavePlan="#"/>
+  <Alumno numeroControl="#" curp="#" nombre="#"
+    primerApellido="#" segundoApellido="#" idGenero="#"
+    fechaNacimiento="#"/>
+  <Expedicion idTipoCertificacion="#" fecha="#" idLugarExpedicion="#"/>
+  <Asignaturas total="#" asignadas="#" promedio="#">
+  </Asignaturas>
+</Dec>
