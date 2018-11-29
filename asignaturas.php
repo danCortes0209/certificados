@@ -1,9 +1,6 @@
-<?php include 'views/header.php';?>
-<!--Pagina principal-->
-<div class="main">
+
     <?php
-        echo "asignaturas";
+        $baseroot = 'C:/laragon/www/sistema_certificados/';
+        $database = $baseroot . 'components/database.php';
+        include 'views/asignaturas/cargaralumno.view.php'
     ?>
-</div>
-<!--Termina Pagina Principal-->
-<?php include 'views/footer.php';?>

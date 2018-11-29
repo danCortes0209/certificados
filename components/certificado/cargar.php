@@ -1,26 +1,58 @@
 <?php
-    $idalumno = 0;
+    require $database;
+
     $calificaciones = array();
-    
+    $errorcase = array(
+        'userexist' => '<li style="color:grey;">Ya existe un alumno con los mismos datos ingresados</li>',
+        'emptycase' => '<li style="color:grey;">Por favor seleccione un alumno</li>'
+    );
+    $errores = '';
+
     $xml = simplexml_load_file($xmlroot);
 
-    require $database;
     //conexion a base de datos
-    $alumnodatos = $conexion->query('SELECT * FROM alumnos ORDER BY idalumno DESC');
+    $alumnodatos = $conexion->query('SELECT numerocontrol, idalumno  FROM alumnos ORDER BY numerocontrol');
+    $alumnodatos->execute();
+    $showalumnos = $alumnodatos->fetchAll();
     //creando datos
     
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $idalumno = $_POST['alumno'];
+        
+        if (empty($idalumno)) {
+            $errores .= $errorcase['emptycase'];
+        } else {
+            $alumnodatos = $conexion->prepare('SELECT * FROM alumnos, plancarrera WHERE alumnos.idalumno = :idalumno AND alumnos.idalumno = plancarrera.idalumno ');
+            $alumnodatos->execute(array(':idalumno'=>$idalumno));
+            //Cargar datos del alumno al XML
+            $resultado = $alumnodatos->fetch();
+            cargarAlumnoXML($resultado, $xml, $xmlsaveroot);
+            cargarCarreraXML($resultado, $xml, $xmlsaveroot);
+            
+            echo "<a href='xmls/alumno.xml'>Ver Certificado</a>";
+        }
 
-    /* foreach($alumnodatos as $filas) {
-        //Igualar campos ALUMNO del XML a los de la base de datos
-        $xml->Alumno['numeroControl'] = $filas['numerocontrol'];
-        $xml->Alumno['curp'] = $filas['curp'];
-        $xml->Alumno['nombre'] = $filas['nombre'];
-        $xml->Alumno['primerApellido'] = $filas['appaterno'];
-        $xml->Alumno['segundoApellido'] = $filas['apmaterno'];
-        $xml->Alumno['idGenero'] = $filas['idgenero'];
-        $xml->Alumno['fechaNacimiento'] = $filas['fechanacimiento'];
-        $idalumno = $filas['idalumno'];
+        
     }
+
+    function cargarAlumnoXML($alumno, $archivo, $ruta) {
+        $archivo->Alumno['numeroControl'] = $alumno['numerocontrol'];
+        $archivo->Alumno['curp'] = $alumno['curp'];
+        $archivo->Alumno['nombre'] = $alumno['nombre'];
+        $archivo->Alumno['primerApellido'] = $alumno['appaterno'];
+        $archivo->Alumno['segundoApellido'] = $alumno['apmaterno'];
+        $archivo->Alumno['idGenero'] = $alumno['idgenero'];
+        $archivo->Alumno['fechaNacimiento'] = $alumno['fechanacimiento'];
+        $archivo->asXML($ruta);
+    }
+
+    function cargarCarreraXML($alumno, $archivo, $ruta) {
+        $archivo->Carrera['idCarrera'] = $alumno['idcarrera'];
+        $archivo->Carrera['idTipoPeriodo'] = $alumno['idtipoperiodo'];
+        $archivo->Carrera['clavePlan'] = $alumno['claveplan'];
+        $archivo->asXML($ruta);
+    }
+    /* 
     //Obtener asignaturas del alumno
     $asignaturasdatos = $conexion->prepare('SELECT * FROM asignaturas_alumno WHERE idalumno = :id');
     $asignaturasdatos->execute(array(':id' => $idalumno));
@@ -43,5 +75,7 @@
     //guardando XML
     $xml->asXML($xmlsaveroot); */
     //XML guardado
-    echo "<a href='xmls/alumno.xml'>Ver Certificado</a>";
+    //;
+
+    require $baseroot.'views/certificados/cargar.view.php';
 ?>
