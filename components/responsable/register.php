@@ -1,9 +1,6 @@
 <?php 
     require $database;
 
-    if (isset($_SESSION['usuario'])) {
-        header('Location: index.php');
-    }
 
     $errorcase = array(
         'userexist' => '<li style="color:grey;">Ya existe un responsable con los mismos datos ingresados</li>',
@@ -30,8 +27,8 @@
         if( empty($curp) or empty($nombre) or empty($apmaterno) or empty($appaterno) or empty($usuario) or empty($contraseña) or empty($cargo) or empty($idipes)) {
             $errores .= $errorcase['emptycase'];
         } else {
-            $statement = $conexion->prepare('SELECT * FROM responsable WHERE curp = :curp');
-            $statement->execute(array(':curp' => $curp));
+            $statement = $conexion->prepare('SELECT * FROM responsable WHERE curp = :curp AND usuario = :user');
+            $statement->execute(array(':curp' => $curp, ':user' => $usuario));
             $resultado = $statement->fetch();
 
             if($resultado) {
@@ -39,7 +36,6 @@
             } else {
                 $insert = $conexion->prepare('INSERT INTO responsable VALUES (NULL, :ips, :curp, :nom, :patern, :matern, :contra, :user, :carg)');
                 $insert->execute(array(':ips' => $idipes, ':curp' => $curp, ':nom' => $nombre, ':patern' => $appaterno, ':matern' => $apmaterno, ':contra' => $contraseña, ':user' => $usuario, ':carg' => $cargo));
-                header('Location: login.php');
             }
         }
     }
