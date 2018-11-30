@@ -1,4 +1,4 @@
-
-    <?php
-        include "views/index/index.view.php";
-    ?>
+<?php
+session_start();
+    include "views/index/index.view.php";
+?>

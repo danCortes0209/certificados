@@ -12,17 +12,17 @@
         <ul class="navbar__list">
             <li class="navbar__item"><a href="index.php" class="navbar__link">Inicio</a></li>
             <?php 
-                session_start();
                 if (isset($_SESSION['usuario'])):
             ?>
                 <li class="navbar__item"><a href="alumnos.php" class="navbar__link">Alumnos</a></li>
                 <li class="navbar__item"><a href="asignaturas.php" class="navbar__link">Asignaturas</a></li>
                 <li class="navbar__item"><a href="carreras.php" class="navbar__link">Carreras</a></li>
                 <li class="navbar__item"><a href="certificados.php" class="navbar__link">Certificados</a></li>
-                <li class="navbar__item"><a href="index.php" class="navbar__link">Cerrar sesion</a></li>
+                <li class="navbar__item"><a href="close.php" class="navbar__link">Cerrar sesion</a></li>
+                <li class="navbar__item"><a href="ipes.php" class="navbar__link">IPES</a></li>
             <?php else: ?>
-                <li class="navbar__item"><a href="index.php" class="navbar__link">login</a></li>
-                <li class="navbar__item"><a href="index.php" class="navbar__link">register</a></li>
+                <li class="navbar__item"><a href="login.php" class="navbar__link">login</a></li>
+                <li class="navbar__item"><a href="register.php" class="navbar__link">register</a></li>
             <?php endif ?>
         </ul>
     </nav>

@@ -1,4 +1,5 @@
 <?php
+
     require $database;
 
     $calificaciones = array();
