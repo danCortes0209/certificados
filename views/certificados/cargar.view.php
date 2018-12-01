@@ -28,6 +28,12 @@
                 </ul>
             </div>
         <?php endif; ?>
+        <?php 
+            if(!empty($certificado)){
+                echo $certificado;
+            }
+        ?>
+
     </div>
 </div>
 <?php include 'views/footer.php';?>

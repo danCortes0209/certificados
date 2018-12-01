@@ -1,4 +1,5 @@
-<select name="entidad" id="entidad">
+<label for="entidad" class="form__input-label">Entidad Federativa</label>
+<select name="entidad" id="entidad"  class="form__select">
     <option value="">SELECCIONE ...</option>
     <option value="1">AGUASCALIENTES</option>
     <option value="2">BAJA CALIFORNIA</option>

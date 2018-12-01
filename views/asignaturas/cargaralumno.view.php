@@ -2,16 +2,16 @@
 <!--Pagina principal-->
 <div class="main">
     <div class="form">
-        <h1 class="form__title">Crear un Alumno</h1>
+        <h1 class="form__title">Asignar materias del alumno</h1>
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
             <!--Carreras-->
             <div class="form__item">
-                <label for="asignaturas" class="form__input-label">Asignaturas</label>
-                <select name="asignaturas" id="asignaturas" class="form__select">
+                <label for="asignatura" class="form__input-label">Asignaturas</label>
+                <select name="asignatura" id="asignatura" class="form__select">
                     <option value="">Seleccione...</option>
                     <?php 
                         foreach($asignaturas as $carrera) {
-                            echo '<option value="'.$carrera['idcarrera'].'">'.$carrera['nombre'].'</option>';
+                            echo '<option value="'.$carrera['idasignatura'].'">'.$carrera['nombre'].'</option>';
                         }
                     ?>    
                 </select>
@@ -23,9 +23,39 @@
                     <option value="">Seleccione...</option>
                     <?php 
                         foreach($alumnos as $alumno) {
-                            echo '<option value="'.$alumno['idcarrera'].'">'.$alumno['numerocontrol'].'</option>';
+                            echo '<option value="'.$alumno['idalumno'].'">'.$alumno['numerocontrol'].'</option>';
                         }
                     ?>    
+                </select>
+            </div>
+            <!--Ciclo-->
+            <div class="form__item">
+                <label for="ciclo" class="form__input-label">Ciclo</label>
+                <input type="text" class="form__input-box" placeholder="AAAA-Q" name="ciclo">
+            </div>
+            <!--Calificacion-->
+            <div class="form__item">
+                <label for="calificacion" class="form__input-label">Calificacion</label>
+                <input type="number" class="form__input-box" name="calificacion" min="1" max="10" step=".1">
+            </div>
+            <!--Observaciones-->
+            <div class="form__item">
+                <label for="observaciones" class="form__input-label">Observaciones</label>
+                <select name="observaciones" id="observaciones" class="form__select">
+                    <option value="">Seleccione...</option>
+                    <option value="70">EQUIVALENCIA DE ESTUDIOS</option>
+                    <option value="71">EXAMEN EXTRAORDINARIO</option>
+                    <option value="72">EXAMEN A TITULO DE SUFICIENCIA</option>
+                    <option value="73">CURSO DE VERANO</option>
+                    <option value="74">RECURSAMIENTO</option>
+                    <option value="75">REINGRESO</option>
+                    <option value="76">ACUERDO REGULARIZACIÓN</option>
+                    <option value="77">CON CAMBIO EN EL ACUERDO DE RVOE</option>
+                    <option value="78">REVALIDACIÓN DE ESTUDIOS</option>
+                    <option value="100">NORMAL / ORDINARIO</option>
+                    <option value="101">CORRESPONDENCIA DE ASIGNATURA POR PLAN</option>
+                    <option value="102">EXENTO</option>
+                    <option value="103">ACREDITADO O APROBADO</option>
                 </select>
             </div>
             <!--Envio-->
