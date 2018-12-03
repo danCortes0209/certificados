@@ -120,3 +120,8 @@ create table expedicion (
 INSERT INTO asignaturas (nombre, descripcion) VALUES ('Matematicas', 'Matematicas'), ('Español 1', 'Español 1');
 
 INSERT INTO carreras (nombre, descripcion) VALUES ('Ingenieria en Sistemas', 'Ingenieria en Sistemas'), ('Contaduria', 'Contaduria'); 
+
+INSERT INTO ipes VALUES (null, 14, 1, 13, 'utectulancingo');
+
+INSERT INTO responsable VALUES (NULL, 1, 'HECO981124HHGRSS00', 'Daniel', 'Hernandez', 'Cortes', '123456', 'dancortes', 5);
+

@@ -17,6 +17,44 @@
                     ?>    
                 </datalist>
             </div>
+            <!--Tipo Certificacion-->
+            <div class="form__item">
+                <label for="tipocertificacion" class="form__input-label">Tipo de certificacion</label>
+                <select name="tipocertificacion" id="tipocertificacion" class="form__select">
+                    <option value="">Seleccione...</option>
+                    <option value="79">Total</option>
+                    <option value="80">Parcial</option>    
+                </select>
+            </div>
+            <!--Folio de control-->
+            <div class="form__item">
+                <label for="foliocontrol" class="form__input-label">Folio de control</label>
+                <input type="text" placeholder="Folio de control" class="form__input-box" name="foliocontrol">
+            </div>
+            <!--Sello-->
+            <div class="form__item">
+                <label for="sello" class="form__input-label">Sello</label>
+                <input type="text" placeholder="Sello" class="form__input-box" name="sello">
+            </div>
+            <!--Certificado Responsable-->
+            <div class="form__item">
+                <label for="certificadoresponsable" class="form__input-label">Certificado Responsable</label>
+                <input type="text" placeholder="Certificado Responsable" class="form__input-box" name="certificadoresponsable">
+            </div>
+            <!--No. Certificado Responsable-->
+            <div class="form__item">
+                <label for="nocertificadoresponsable" class="form__input-label">No. Certificado Responsable</label>
+                <input type="text" placeholder="No. Certificado Responsable" class="form__input-box" name="nocertificadoresponsable">
+            </div>
+            <!--Numero de RVOE-->
+            <div class="form__item">
+                <label for="numrvoe" class="form__input-label">Numero de RVOE</label>
+                <input type="text" placeholder="numero de RVOE" class="form__input-box" name="numrvoe">
+            </div>
+            <!--Entidad federativa-->
+            <div class="form__item">
+                <?php include 'views/utils/entidad.select.php'; ?>
+            </div>
             <!--Envio-->
             <input type="submit" value="Enviar" class="form__submit">
         </form>

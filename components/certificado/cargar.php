@@ -3,10 +3,12 @@
 
     $errorcase = array(
         'userexist' => '<li style="color:grey;">Ya existe un alumno con los mismos datos ingresados</li>',
-        'emptycase' => '<li style="color:grey;">Por favor seleccione un alumno</li>',
+        'emptycase' => '<li style="color:grey;">Por favor seleccione un alumno y rellene los datos correctamente</li>',
         'nostudent' => '<li style="color:grey;">Es necesario contar con alumnos registrados</li>',
-        'noasigns' => '<li style="color:grey;">Es necesario que el alumno tenga Asignaturas registradas</li>'
+        'noasigns' => '<li style="color:grey;">Es necesario que el alumno tenga Asignaturas registradas</li>',
+        'rvoeexist' => '<li style="color:grey;">Ya existe un RVOE con ese numero</li>'
     );
+    
     $errores = '';
     $certificado = '';
 
@@ -19,9 +21,18 @@
     //creando datos
     
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        date_default_timezone_set('America/Mexico_City');
+        $date = date('Y-m-d H:i:s');
         $idalumno = $_POST['alumno'];
+        $tipocertificacion = $_POST['tipocertificacion'];
+        $folio = $_POST['foliocontrol'];
+        $sello = $_POST['sello'];
+        $certresp = $_POST['certificadoresponsable'];
+        $nocertresp = $_POST['nocertificadoresponsable'];
+        $rvoe = $_POST['numrvoe'];
+        $entidad = $_POST['entidad'];
         
-        if (empty($idalumno)) {
+        if (empty($idalumno) or empty($tipocertificacion) or empty($folio) or empty($sello) or empty($certresp) or empty($nocertresp) or empty($rvoe) or empty($entidad)) {
             $errores .= $errorcase['emptycase'];
         } else {
             //buscar datos del alumno
@@ -45,8 +56,30 @@
                 //validar la existencia de asignaturas
                 if($asignaturas) {
                     cargarAsignaturasXML($asignaturas, $xml, $xmlsaveroot);
+                    
                 } else {
                     $errores .= $errorcase['noasigns'];
+                }
+
+                //obtener datos del mismo certificado
+                $getcert = $conexion->prepare('SELECT * FROM certificado WHERE idalumno = :idal AND foliocontrol = :folio');
+                $getcert->execute(array(':idal'=> $idalumno, ':folio' => $folio));
+                $existcert = $getcert->fetch();
+                if ($existcert) {
+                    cargarCertificadoXML($existcert, $xml, $xmlsaveroot);
+                    cargarRvoeToDatabaseAndXML($existcert['idcertificado'],$rvoe, $date, $conexion, $xml, $xmlsaveroot);
+                    crearExpedicionXML($existcert['idcertificado'],$tipocertificacion, $entidad , $date, $conexion, $xml, $xmlsaveroot);
+                } else {
+                    //insertar el certificado en la base de datos
+                    $crearcert = $conexion->prepare('INSERT INTO certificado VALUES (null, :tip, :folio, :sello, :certresp, :nocertresp, :resp, :alum)');
+                    $crearcert->execute(array(':tip' => $tipocertificacion, ':folio' => $folio, ':sello' => $sello, ':certresp' => $certresp, ':nocertresp' => $nocertresp, ':resp' =>  $responsable['idresponsable'], ':alum' => $idalumno));
+                    
+                    $getcertif = $conexion->prepare('SELECT * FROM certificado WHERE idalumno = :idal AND foliocontrol = :folio');
+                    $getcertif->execute(array(':idal'=> $idalumno, ':folio' => $folio));
+                    $existcertif = $getcertif->fetch();
+                    cargarCertificadoXML($existcertif, $xml, $xmlsaveroot); 
+                    cargarRvoeToDatabaseAndXML($existcertif['idcertificado'], $rvoe, $date, $conexion, $xml, $xmlsaveroot);
+                    crearExpedicionXML($existcertif['idcertificado'],$tipocertificacion, $entidad , $date, $conexion, $xml, $xmlsaveroot);
                 }
                 //mostrar XML
                 $certificado .="<a href='xmls/alumno.xml'>Ver Certificado</a>";
@@ -54,6 +87,39 @@
                 $errores .= $errorcase['nostudent'];
             }
         }
+    }
+
+    function cargarCertificadoXML($certif, $archivo, $ruta) {
+        $archivo['folioControl'] = $certif['foliocontrol'];
+        $archivo['sello'] = $certif['sello'];
+        $archivo['certificadoResponsable'] = $certif['certresp'];
+        $archivo['noCertificadoResponsable'] = $certif['nocertresp'];
+        $archivo->asXML($ruta);
+    }
+
+    function cargarRvoeToDatabaseAndXML($certid, $norvoe, $fecha, $conecc, $archivo, $ruta) {
+        $archivo->Rvoe['numero'] = $norvoe;
+        $archivo->Rvoe['fechaExpedicion'] = $fecha;
+        $archivo->asXML($ruta);
+        //buscar rvoe
+        $state = $conecc->prepare('SELECT * FROM rvoe WHERE numero = :num');
+        $state->execute(array(':num' => $norvoe));
+        $existrvoe = $state->fetch();
+
+        if(!$existrvoe)  {
+            $state = $conecc->prepare('INSERT INTO rvoe VALUES (NULL, :num, :fec, :cer)');
+            $state->execute(array(':num' => $norvoe, ':fec' => $fecha, ':cer' => $certid));
+        }
+    }
+
+    function crearExpedicionXML($certid,$tipo,$estado, $fecha, $conecc, $archivo, $ruta){
+        $archivo->Expedicion['idTipoCertificacion'] = $tipo;
+        $archivo->Expedicion['idLugarExpedicion'] = $estado;
+        $archivo->Expedicion['fecha'] = $fecha;
+        $archivo->asXML($ruta);
+        //buscar rvoe
+        $state = $conecc->prepare('INSERT INTO expedicion VALUES (Null, :tip, :fec, :ent, :cer)');
+        $state->execute(array(':tip' => $tipo,':fec' => $fecha,':ent' => $estado, ':cer' => $certid));
     }
 
     function cargarAlumnoXML($alumno, $archivo, $ruta) {

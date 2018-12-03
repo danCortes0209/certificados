@@ -15,7 +15,8 @@
                 if (isset($_SESSION['usuario'])):
             ?>
                 <li class="navbar__item"><a href="alumnos.php" class="navbar__link">Alumnos</a></li>
-                <li class="navbar__item"><a href="asignaturas.php" class="navbar__link">Asignaturas</a></li>
+                <li class="navbar__item"><a href="asignaturas.php" class="navbar__link">Asignar Asignaturas</a></li>
+                <li class="navbar__item"><a href="asignaturas.create.php" class="navbar__link">Crear Asignaturas</a></li>
                 <li class="navbar__item"><a href="carreras.php" class="navbar__link">Carreras</a></li>
                 <li class="navbar__item"><a href="certificados.php" class="navbar__link">Certificados</a></li>
                 <li class="navbar__item"><a href="ipes.php" class="navbar__link">IPES</a></li>

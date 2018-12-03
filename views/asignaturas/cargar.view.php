@@ -2,7 +2,7 @@
 <!--Pagina principal-->
 <div class="main">
     <div class="form">
-        <h1 class="form__title">Crear Carreras</h1>
+        <h1 class="form__title">Crear Asignaturas</h1>
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
             <!--Nombre-->
             <div class="form__item">

@@ -1,5 +1,4 @@
-<?php 
-
+<?php
     require $database;
 
     $errorcase = array(
@@ -16,7 +15,7 @@
         if (empty($nombre) or empty($descripcion)) {
             $errores .= $errorcase['emptycase'];
         } else {
-            $statement = $conexion->prepare('SELECT * FROM asignaturas WHERE nombre = :nom');
+            $statement = $conexion->prepare('SELECT * FROM carreras WHERE nombre = :nom');
             $statement->execute(array(':nom' => $nombre));
             $existencia = $statement->fetch();
 
@@ -24,12 +23,12 @@
                 //de estar registrado, manda ese error
                 $errores .= $errorcase['carexist'];
             } else {
-                $statement = $conexion->prepare('INSERT INTO asignaturas VALUES (NULL, :nom, :descri)');
+                $statement = $conexion->prepare('INSERT INTO carreras VALUES (NULL, :nom, :descri)');
                 $statement->execute(array(':nom' => $nombre, ':descri' => $descripcion));
             }
         }
 
     }
 
-    require $baseroot.'views/asignaturas/cargar.view.php';
+    require $baseroot.'views/carreras/cargar.view.php';
 ?>

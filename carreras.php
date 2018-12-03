@@ -1,4 +1,6 @@
 <?php 
-session_start();
-    include 'views/carreras/cargar.view.php';
+    session_start();
+    $baseroot = 'E:/laragon/www/sistema_certificados/';
+    $database = $baseroot . 'components/database.php';
+    include 'components/carreras/crear.php';
 ?>

@@ -43,6 +43,7 @@
                 $resultado = $statement->fetch();
                 $idalumno = $resultado[0];
                 //lo registra dentro de un plan de carrera
+                date_default_timezone_set('America/Mexico_City');
                 $statement2 = $conexion->prepare('INSERT INTO plancarrera (idcarrera,claveplan,idtipoperiodo,idalumno) VALUES (:carrera,:clave,:periodo,:alumno)');
                 $statement2->execute(array(':carrera'=>$carrera, ':clave' => date('Y'), ':periodo' => $periodo, ':alumno' => $idalumno));
             } else {
