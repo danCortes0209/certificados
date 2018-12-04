@@ -11,15 +11,15 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Volcando datos para la tabla certificados.alumnos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla certificados.alumnos: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `alumnos` DISABLE KEYS */;
-REPLACE INTO `alumnos` (`idalumno`, `numerocontrol`, `fechanacimiento`, `curp`, `nombre`, `appaterno`, `apmaterno`, `idgenero`) VALUES
+INSERT IGNORE INTO `alumnos` (`idalumno`, `numerocontrol`, `fechanacimiento`, `curp`, `nombre`, `appaterno`, `apmaterno`, `idgenero`) VALUES
 	(1, '1715110513', '1998-11-24', 'HECO981124HHGRS07', 'Oswaldo Daniel', 'Hernandez', 'Cortes', 251);
 /*!40000 ALTER TABLE `alumnos` ENABLE KEYS */;
 
--- Volcando datos para la tabla certificados.asignaturas: ~14 rows (aproximadamente)
+-- Volcando datos para la tabla certificados.asignaturas: ~16 rows (aproximadamente)
 /*!40000 ALTER TABLE `asignaturas` DISABLE KEYS */;
-REPLACE INTO `asignaturas` (`idasignatura`, `nombre`, `descripcion`) VALUES
+INSERT IGNORE INTO `asignaturas` (`idasignatura`, `nombre`, `descripcion`) VALUES
 	(1, 'Matematicas', 'Matematicas'),
 	(2, 'Español 1', 'Español 1'),
 	(3, 'EspaÃ±ol II', 'EspaÃ±ol II'),
@@ -38,9 +38,9 @@ REPLACE INTO `asignaturas` (`idasignatura`, `nombre`, `descripcion`) VALUES
 	(16, 'Soporte tecnico II', 'Soporte tecnico II');
 /*!40000 ALTER TABLE `asignaturas` ENABLE KEYS */;
 
--- Volcando datos para la tabla certificados.asignaturas_alumno: ~14 rows (aproximadamente)
+-- Volcando datos para la tabla certificados.asignaturas_alumno: ~16 rows (aproximadamente)
 /*!40000 ALTER TABLE `asignaturas_alumno` DISABLE KEYS */;
-REPLACE INTO `asignaturas_alumno` (`idasignaturaalumno`, `idalumno`, `idasignatura`, `ciclo`, `calificacion`, `observaciones`) VALUES
+INSERT IGNORE INTO `asignaturas_alumno` (`idasignaturaalumno`, `idalumno`, `idasignatura`, `ciclo`, `calificacion`, `observaciones`) VALUES
 	(1, 1, 1, '2015-4', 10, 100),
 	(2, 1, 2, '2015-4', 9, 100),
 	(3, 1, 5, '2015-4', 9.7, 100),
@@ -61,21 +61,21 @@ REPLACE INTO `asignaturas_alumno` (`idasignaturaalumno`, `idalumno`, `idasignatu
 
 -- Volcando datos para la tabla certificados.carreras: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `carreras` DISABLE KEYS */;
-REPLACE INTO `carreras` (`idcarrera`, `nombre`, `descripcion`) VALUES
+INSERT IGNORE INTO `carreras` (`idcarrera`, `nombre`, `descripcion`) VALUES
 	(1, 'Ingenieria en Sistemas', 'Ingenieria en Sistemas'),
 	(2, 'Contaduria', 'Contaduria');
 /*!40000 ALTER TABLE `carreras` ENABLE KEYS */;
 
--- Volcando datos para la tabla certificados.certificado: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla certificados.certificado: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `certificado` DISABLE KEYS */;
-REPLACE INTO `certificado` (`idcertificado`, `tipocertificado`, `foliocontrol`, `sello`, `certresp`, `nocertresp`, `idresponsable`, `idalumno`) VALUES
+INSERT IGNORE INTO `certificado` (`idcertificado`, `tipocertificado`, `foliocontrol`, `sello`, `certresp`, `nocertresp`, `idresponsable`, `idalumno`) VALUES
 	(1, 79, 'asfasdsa', 'asdasd', 'asdasd', 'asdasd', 1, 1),
 	(2, 79, '1725fv15r1v15', '18736tb152v1vb1', '18181 171n181n', '181635765', 1, 1);
 /*!40000 ALTER TABLE `certificado` ENABLE KEYS */;
 
 -- Volcando datos para la tabla certificados.expedicion: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `expedicion` DISABLE KEYS */;
-REPLACE INTO `expedicion` (`idexpedicion`, `idtipocertificacion`, `fecha`, `entidadfederativa`, `idcertificado`) VALUES
+INSERT IGNORE INTO `expedicion` (`idexpedicion`, `idtipocertificacion`, `fecha`, `entidadfederativa`, `idcertificado`) VALUES
 	(1, 79, '2018-12-03 14:59:30', 13, 1),
 	(2, 79, '2018-12-03 15:08:18', 13, 1),
 	(3, 79, '2018-12-03 15:09:33', 13, 1),
@@ -86,27 +86,27 @@ REPLACE INTO `expedicion` (`idexpedicion`, `idtipocertificacion`, `fecha`, `enti
 	(8, 79, '2018-12-03 18:05:05', 13, 2);
 /*!40000 ALTER TABLE `expedicion` ENABLE KEYS */;
 
--- Volcando datos para la tabla certificados.ipes: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla certificados.ipes: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `ipes` DISABLE KEYS */;
-REPLACE INTO `ipes` (`idipes`, `idnombreinstitucion`, `idcampus`, `identidadfederativa`, `nombre`) VALUES
+INSERT IGNORE INTO `ipes` (`idipes`, `idnombreinstitucion`, `idcampus`, `identidadfederativa`, `nombre`) VALUES
 	(1, 15, 6, 13, 'utec tulancingo');
 /*!40000 ALTER TABLE `ipes` ENABLE KEYS */;
 
--- Volcando datos para la tabla certificados.plancarrera: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla certificados.plancarrera: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `plancarrera` DISABLE KEYS */;
-REPLACE INTO `plancarrera` (`idplan`, `idcarrera`, `claveplan`, `idtipoperiodo`, `idalumno`) VALUES
+INSERT IGNORE INTO `plancarrera` (`idplan`, `idcarrera`, `claveplan`, `idtipoperiodo`, `idalumno`) VALUES
 	(1, 1, '2018', 93, 1);
 /*!40000 ALTER TABLE `plancarrera` ENABLE KEYS */;
 
--- Volcando datos para la tabla certificados.responsable: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla certificados.responsable: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `responsable` DISABLE KEYS */;
-REPLACE INTO `responsable` (`idresponsable`, `idipes`, `curp`, `nombre`, `appaterno`, `apmaterno`, `contraseña`, `usuario`, `idcargo`) VALUES
+INSERT IGNORE INTO `responsable` (`idresponsable`, `idipes`, `curp`, `nombre`, `appaterno`, `apmaterno`, `contraseña`, `usuario`, `idcargo`) VALUES
 	(1, 1, 'HECO981124HHGRS00', 'Oswaldo Daniel', 'Hernandez', 'Cortes', '1234567', 'dancortes', 2);
 /*!40000 ALTER TABLE `responsable` ENABLE KEYS */;
 
 -- Volcando datos para la tabla certificados.rvoe: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `rvoe` DISABLE KEYS */;
-REPLACE INTO `rvoe` (`idrvoe`, `numero`, `fecha`, `idcertificado`) VALUES
+INSERT IGNORE INTO `rvoe` (`idrvoe`, `numero`, `fecha`, `idcertificado`) VALUES
 	(1, 1422312, '2018-12-03 14:59:30', 1),
 	(2, 1865472, '2018-12-03 18:03:43', 2),
 	(3, 172612721, '2018-12-03 18:05:05', 2);
