@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Dec xmlns="https://www.siged.sep.gob.mx/certificados/" version="1.0" tipoCertificado="5" folioControl="1725fv15r1v15" sello="18736tb152v1vb1" certificadoResponsable="18181 171n181n" noCertificadoResponsable="181635765">
+  <Ipes idNombreInstitucion="15" idCampus="6" idEntidadFederativa="13">
+    <Responsable nombre="Oswaldo Daniel" primerApellido="Hernandez" segundoApellido="Cortes" curp="HECO981124HHGRS00" idCargo="2"/>
+  </Ipes>
+  <Rvoe numero="172612721" fechaExpedicion="2018-12-03 18:05:05"/>
+  <Carrera idCarrera="1" idTipoPeriodo="93" clavePlan="2018"/>
+  <Alumno numeroControl="1715110513" curp="HECO981124HHGRS07" nombre="Oswaldo Daniel" primerApellido="Hernandez" segundoApellido="Cortes" idGenero="251" fechaNacimiento="1998-11-24"/>
+  <Expedicion idTipoCertificacion="79" fecha="2018-12-03 18:05:05" idLugarExpedicion="13"/>
+  <Asignaturas total="16" asignadas="16" promedio="9.5625">
+  <Asignatura idAsignatura="1" ciclo="2015-4" calificacion="10" idObservaciones="100"/><Asignatura idAsignatura="2" ciclo="2015-4" calificacion="9" idObservaciones="100"/><Asignatura idAsignatura="5" ciclo="2015-4" calificacion="9.7" idObservaciones="100"/><Asignatura idAsignatura="7" ciclo="2015-4" calificacion="10" idObservaciones="100"/><Asignatura idAsignatura="3" ciclo="2016-1" calificacion="10" idObservaciones="100"/><Asignatura idAsignatura="4" ciclo="2016-1" calificacion="10" idObservaciones="100"/><Asignatura idAsignatura="6" ciclo="2016-1" calificacion="9" idObservaciones="100"/><Asignatura idAsignatura="8" ciclo="2016-1" calificacion="10" idObservaciones="100"/><Asignatura idAsignatura="9" ciclo="2016-2" calificacion="10" idObservaciones="100"/><Asignatura idAsignatura="10" ciclo="2016-2" calificacion="9" idObservaciones="100"/><Asignatura idAsignatura="12" ciclo="2016-2" calificacion="10" idObservaciones="100"/><Asignatura idAsignatura="13" ciclo="2016-2" calificacion="9.3" idObservaciones="100"/><Asignatura idAsignatura="11" ciclo="2016-3" calificacion="10" idObservaciones="100"/><Asignatura idAsignatura="14" ciclo="2016-3" calificacion="10" idObservaciones="100"/><Asignatura idAsignatura="15" ciclo="2016-3" calificacion="9" idObservaciones="100"/><Asignatura idAsignatura="16" ciclo="2016-3" calificacion="8" idObservaciones="100"/></Asignaturas>
+</Dec>
